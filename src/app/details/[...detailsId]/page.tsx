@@ -104,7 +104,6 @@ const DetailsPage = async ({ params }: ParamsProps) => {
 
         <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
           <h2 className="text-lg font-bold text-gray-900">দামের সারসংক্ষেপ</h2>
-
           <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
             <div className="rounded-xl border border-gray-200 p-4">
               <p className="text-sm text-gray-500">সর্বনিম্ন দাম</p>
