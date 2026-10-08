@@ -27,9 +27,9 @@ const ProductCard = ({ upProducts }: { upProducts: IMarquee }) => {
           </div>
         </div>
 
-        {/* Bottom */}
+
         <div className="mt-4 flex items-end justify-between">
-          {/* Price */}
+
           <div>
             <p className="text-sm text-gray-500">আজকের দাম</p>
 
@@ -38,7 +38,7 @@ const ProductCard = ({ upProducts }: { upProducts: IMarquee }) => {
             </p>
           </div>
 
-          {/* Percentage */}
+          
           <div
             className={`rounded-full px-3 py-1 text-sm font-semibold ${
               upProducts.today > upProducts.yesterday

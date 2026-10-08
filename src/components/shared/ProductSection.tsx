@@ -33,7 +33,6 @@ const ProductSection = ({ data }: { data: IMarquee[] }) => {
     };
   }, []);
 
-  // Esc চাপলে বন্ধ হবে
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
@@ -62,7 +61,7 @@ const ProductSection = ({ data }: { data: IMarquee[] }) => {
       <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-[15px] px-3 py-3 justify-end mt-5 mb-4">
         <span className="text-gray-600 shrink-0">সাজান</span>
 
-        <div ref={dropdownRef} className="relative w-full max-w-[200px]">
+        <div ref={dropdownRef} className="relative w-full max-w-50">
           <button
             type="button"
             aria-haspopup="listbox"
@@ -93,7 +92,11 @@ const ProductSection = ({ data }: { data: IMarquee[] }) => {
               className="absolute right-0 top-full z-50 mt-1 w-full min-w-max max-w-[calc(100vw-2rem)] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg"
             >
               {sortOptions.map((option) => (
-                <li key={option.value} role="option" aria-selected={sortOrder === option.value}>
+                <li
+                  key={option.value}
+                  role="option"
+                  aria-selected={sortOrder === option.value}
+                >
                   <button
                     type="button"
                     onClick={() => {

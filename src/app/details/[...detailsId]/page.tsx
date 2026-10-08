@@ -34,7 +34,6 @@ const DetailsPage = async ({ params }: ParamsProps) => {
   return (
     <div className="min-h-screen bg-[#f3f7f3] py-6">
       <div className="w-full max-w-7xl mx-auto px-4">
-        {/* Breadcrumb */}
         <div className="mb-5 flex items-center gap-2 text-sm text-gray-500">
           <Link href={"/"}>
             <button className="cursor-pointer">হোম</button>
@@ -51,7 +50,6 @@ const DetailsPage = async ({ params }: ParamsProps) => {
           <span>{product.nameBn}</span>
         </div>
 
-        {/* Product Overview */}
         <div className="rounded-2xl border border-gray-200 bg-white p-5">
           <div className="flex items-center justify-between gap-5">
             <div className="flex flex-col items-center gap-4 md:flex-row">
@@ -79,7 +77,6 @@ const DetailsPage = async ({ params }: ParamsProps) => {
               </div>
             </div>
 
-            {/* Today's Price */}
             <div className="min-w-31.25 rounded-xl bg-[#f1f6f1] px-5 py-4 text-center">
               <p className="text-xs text-gray-500">আজকের দাম</p>
 
@@ -105,12 +102,10 @@ const DetailsPage = async ({ params }: ParamsProps) => {
           </div>
         </div>
 
-        {/* Price Summary */}
         <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
           <h2 className="text-lg font-bold text-gray-900">দামের সারসংক্ষেপ</h2>
 
           <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {/* Minimum */}
             <div className="rounded-xl border border-gray-200 p-4">
               <p className="text-sm text-gray-500">সর্বনিম্ন দাম</p>
 
@@ -123,7 +118,6 @@ const DetailsPage = async ({ params }: ParamsProps) => {
               </p>
             </div>
 
-            {/* Maximum */}
             <div className="rounded-xl border border-gray-200 p-4">
               <p className="text-sm text-gray-500">সর্বাধিক দাম</p>
 
@@ -136,7 +130,6 @@ const DetailsPage = async ({ params }: ParamsProps) => {
               </p>
             </div>
 
-            {/* Average */}
             <div className="rounded-xl border border-gray-200 p-4">
               <p className="text-sm text-gray-500">গড় দাম</p>
 
@@ -153,13 +146,11 @@ const DetailsPage = async ({ params }: ParamsProps) => {
             </div>
           </div>
 
-          {/* Market Prices */}
           <h2 className="mt-7 text-lg font-bold text-gray-900">
             বাজারভিত্তিক আজকের দাম
           </h2>
 
           <div className="mt-4 overflow-hidden rounded-xl border border-gray-200">
-            {/* Desktop Header */}
             <div className="hidden md:grid md:grid-cols-5 bg-[#f8faf8] px-4 py-3 text-sm font-medium text-gray-500">
               <span>বাজার</span>
               <span>বিভাগ</span>
@@ -185,7 +176,6 @@ const DetailsPage = async ({ params }: ParamsProps) => {
                     key={`${market.market}-${index}`}
                     className="border-t border-gray-200 px-4 py-3 text-sm text-gray-700"
                   >
-                    {/* Desktop */}
                     <div className="hidden md:grid md:grid-cols-5 md:items-center">
                       <span>{market.market}</span>
 
@@ -207,9 +197,7 @@ const DetailsPage = async ({ params }: ParamsProps) => {
                       </span>
                     </div>
 
-                    {/* Mobile */}
                     <div className="md:hidden">
-                      {/* First 3 */}
                       <div className="grid grid-cols-3 items-center gap-2">
                         <div>
                           <p className="text-xs text-gray-500">বাজার</p>
@@ -227,7 +215,6 @@ const DetailsPage = async ({ params }: ParamsProps) => {
                         </div>
                       </div>
 
-                      {/* Last 2 */}
                       <div className="mt-3  pt-3">
                         <div className="grid grid-cols-2 items-center gap-8">
                           <div>
