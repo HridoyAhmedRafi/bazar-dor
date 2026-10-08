@@ -3,9 +3,7 @@ import Link from "next/link";
 import MarqueeText from "react-marquee-text";
 
 const Marquee = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
-  );
+  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
   const data = await res.json();
   const marqueeLinks: IMarquee[] = data;
   const unitBn: Record<string, string> = {
@@ -16,7 +14,7 @@ const Marquee = async () => {
   };
 
   return (
-    <div className="border-b border-gray-200 py-1 ">
+    <div className="border-b border-gray-200 py-1 bg-white ">
       <MarqueeText direction="right" duration={16}>
         <div className="flex gap-5 text-[14px]">
           {marqueeLinks.map((marqueeLink) => (

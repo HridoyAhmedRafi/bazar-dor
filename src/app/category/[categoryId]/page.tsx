@@ -11,12 +11,12 @@ const CategoryPage = async ({ params }: ParamsProps) => {
   const { categoryId } = await params;
 
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
+    `https://api.abcz.workers.dev/api/bazardor/products?category=${categoryId}`,
   );
   const data: IMarquee[] = await res.json();
 
   const signleCategory = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/categories`,
+    `https://api.abcz.workers.dev/api/bazardor/categories`,
   );
   const getSignleCategory = await signleCategory.json();
   const currentCategory = getSignleCategory.find(

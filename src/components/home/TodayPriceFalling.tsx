@@ -2,9 +2,7 @@ import { IMarquee } from "@/app/types/marquee-links-type";
 import ProductCard from "./ProductCard";
 
 const TodayPriceFalling = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
-  );
+  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
   const data: IMarquee[] = await res.json();
 
   return (
@@ -12,7 +10,7 @@ const TodayPriceFalling = async () => {
       <h1 className="font-bold text-[18px]">
         <span className="text-green-500 ">▼</span> আজ দাম কমেছে
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+      <div className="grid grid-1 md:grid-cols-3 gap-4 mt-3">
         {data
           .filter((upProducts) => upProducts.change.dir === "down")
           .sort((a, b) => b.change.pct - a.change.pct)

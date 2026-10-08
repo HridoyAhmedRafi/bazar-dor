@@ -16,7 +16,7 @@ const unitBn: Record<string, string> = {
 const DetailsPage = async ({ params }: ParamsProps) => {
   const { detailsId } = await params;
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${detailsId}`,
+    `https://api.abcz.workers.dev/api/bazardor/products/${detailsId}`,
   );
   const product = await res.json();
 
@@ -39,18 +39,22 @@ const DetailsPage = async ({ params }: ParamsProps) => {
           <Link href={"/"}>
             <button className="cursor-pointer">হোম</button>
           </Link>
+
           <span>›</span>
+
           <Link href={`/category/${product.category}`}>
             {product.categoryNameBn}
           </Link>
+
           <span>›</span>
+
           <span>{product.nameBn}</span>
         </div>
 
         {/* Product Overview */}
         <div className="rounded-2xl border border-gray-200 bg-white p-5">
           <div className="flex items-center justify-between gap-5">
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col items-center gap-4 md:flex-row">
               <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-[#f1f6f1] text-4xl">
                 {product.image}
               </div>
@@ -105,7 +109,7 @@ const DetailsPage = async ({ params }: ParamsProps) => {
         <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
           <h2 className="text-lg font-bold text-gray-900">দামের সারসংক্ষেপ</h2>
 
-          <div className="mt-4 grid grid-cols-3 gap-4">
+          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
             {/* Minimum */}
             <div className="rounded-xl border border-gray-200 p-4">
               <p className="text-sm text-gray-500">সর্বনিম্ন দাম</p>
@@ -155,7 +159,8 @@ const DetailsPage = async ({ params }: ParamsProps) => {
           </h2>
 
           <div className="mt-4 overflow-hidden rounded-xl border border-gray-200">
-            <div className="grid grid-cols-5 bg-[#f8faf8] px-4 py-3 text-sm font-medium text-gray-500">
+            {/* Desktop Header */}
+            <div className="hidden md:grid md:grid-cols-5 bg-[#f8faf8] px-4 py-3 text-sm font-medium text-gray-500">
               <span>বাজার</span>
               <span>বিভাগ</span>
               <span className="text-right">সর্বনিম্ন</span>
@@ -178,26 +183,70 @@ const DetailsPage = async ({ params }: ParamsProps) => {
                 return (
                   <div
                     key={`${market.market}-${index}`}
-                    className="grid grid-cols-5 items-center border-t border-gray-200 px-4 py-3 text-sm text-gray-700"
+                    className="border-t border-gray-200 px-4 py-3 text-sm text-gray-700"
                   >
-                    <span>{market.market}</span>
+                    {/* Desktop */}
+                    <div className="hidden md:grid md:grid-cols-5 md:items-center">
+                      <span>{market.market}</span>
 
-                    <span>{market.division}</span>
+                      <span>{market.division}</span>
 
-                    <span className="text-right">
-                      {market.min.toLocaleString("bn-BD")} টাকা
-                    </span>
+                      <span className="text-right">
+                        {market.min.toLocaleString("bn-BD")} টাকা
+                      </span>
 
-                    <span className="text-right">
-                      {market.max.toLocaleString("bn-BD")} টাকা
-                    </span>
+                      <span className="text-right">
+                        {market.max.toLocaleString("bn-BD")} টাকা
+                      </span>
 
-                    <span className="text-right font-medium">
-                      {average.toLocaleString("bn-BD", {
-                        maximumFractionDigits: 1,
-                      })}{" "}
-                      টাকা
-                    </span>
+                      <span className="text-right font-medium">
+                        {average.toLocaleString("bn-BD", {
+                          maximumFractionDigits: 1,
+                        })}{" "}
+                        টাকা
+                      </span>
+                    </div>
+
+                    {/* Mobile */}
+                    <div className="md:hidden">
+                      {/* First 3 */}
+                      <div className="grid grid-cols-3 items-center gap-2">
+                        <div>
+                          <p className="text-xs text-gray-500">বাজার</p>
+                          <p>{market.market}</p>
+                        </div>
+
+                        <div>
+                          <p className="text-xs text-gray-500">বিভাগ</p>
+                          <p>{market.division}</p>
+                        </div>
+
+                        <div className="text-right">
+                          <p className="text-xs text-gray-500">সর্বনিম্ন</p>
+                          <p>{market.min.toLocaleString("bn-BD")} টাকা</p>
+                        </div>
+                      </div>
+
+                      {/* Last 2 */}
+                      <div className="mt-3  pt-3">
+                        <div className="grid grid-cols-2 items-center gap-8">
+                          <div>
+                            <p className="text-xs text-gray-500">সর্বাধিক</p>
+                            <p>{market.max.toLocaleString("bn-BD")} টাকা</p>
+                          </div>
+
+                          <div>
+                            <p className="text-xs text-gray-500">গড়</p>
+                            <p className="font-medium">
+                              {average.toLocaleString("bn-BD", {
+                                maximumFractionDigits: 1,
+                              })}{" "}
+                              টাকা
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 );
               },
