@@ -127,7 +127,7 @@ const HomePageProducts = ({ data }: { data: IMarquee[] }) => {
       </div>
 
       <div
-        id="allProducts"
+        id="allProducts"  
         className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-5"
       >
         {sortedData.map((product) => (
