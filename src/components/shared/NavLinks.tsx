@@ -1,5 +1,6 @@
 import { INavLinks } from "@/types/nav-links-type";
-import Link from "next/link";
+
+import ActiveLink from "./ActiveLink";
 
 const NavLinks = async () => {
   const res = await fetch(
@@ -9,18 +10,8 @@ const NavLinks = async () => {
   const links: INavLinks[] = data;
 
   return (
-    <div className="py-4 flex max-w-7xl mx-auto px-4 gap-4 md:gap-15 ">
-      {links.map((link) => (
-        <div
-          key={link.id}
-          className="flex flex-wrap md:flex-nowrap items-center gap-2 text-[13px] md:text-[14px]"
-        >
-          <Link href={`/category/${link.id}`}>
-            <span>{link.icon}</span>
-            <p>{link.nameBn}</p>
-          </Link>
-        </div>
-      ))}
+    <div>
+      <ActiveLink data={links}></ActiveLink>
     </div>
   );
 };
