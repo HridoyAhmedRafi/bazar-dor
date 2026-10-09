@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -9,7 +10,30 @@ const Buttons = () => {
   const { data: session } = useSession();
   const user = session?.user;
 
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutside = (e: MouseEvent | TouchEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("touchstart", handleOutside);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, []);
+
   const handleSignOut = async () => {
+    setIsOpen(false);
     await signOut({
       fetchOptions: {
         onSuccess: () => {
@@ -19,21 +43,50 @@ const Buttons = () => {
     });
   };
 
+  const initial = user?.name?.trim()
+    ? Array.from(user.name.trim())[0].toUpperCase()
+    : "U";
+
   return (
     <div>
       <div className="flex gap-2 items-center">
         {user ? (
-          <div className="flex items-center gap-4">
-            <Link href={"/profile"}>
-              <h1>{user.name}</h1>
-            </Link>
-
+          <div ref={menuRef} className="relative">
             <button
-              onClick={handleSignOut}
-              className="btn cursor-pointer rounded bg-red-700 text-white"
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded={isOpen}
+              aria-label="Profile menu"
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="flex h-9 w-9 md:h-10 md:w-10 cursor-pointer items-center justify-center rounded-full bg-[#05893e] text-white font-bold text-[15px] md:text-[17px]"
             >
-              Sign Out
+              {initial}
             </button>
+
+            {isOpen && (
+              <div
+                role="menu"
+                className="absolute right-0 top-full z-50 mt-2 w-40 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg"
+              >
+                <Link
+                  href="/profile"
+                  role="menuitem"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  আমার প্রোফাইল
+                </Link>
+
+                <button
+                  type="button"
+                  role="menuitem"
+                  onClick={handleSignOut}
+                  className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50"
+                >
+                  সাইন আউট
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <>

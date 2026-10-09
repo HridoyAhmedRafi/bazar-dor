@@ -17,8 +17,6 @@ const SignInPage = () => {
       password: string;
     };
 
-    console.log("before submit form in sign in page", user);
-
     const { data, error } = await signIn.email({
       email: user.email,
       password: user.password,
@@ -34,11 +32,15 @@ const SignInPage = () => {
   };
 
   const handleSignInWithGoogle = async () => {
-    // Google sign-up logic
+    await signIn.social({
+      provider: "google",
+    });
   };
 
   const handleSignInWithGithub = async () => {
-    // GitHub sign-up logic
+    await signIn.social({
+      provider: "github",
+    });
   };
 
   return (

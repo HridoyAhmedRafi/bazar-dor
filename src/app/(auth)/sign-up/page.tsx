@@ -1,6 +1,6 @@
 "use client";
 
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
@@ -34,11 +34,15 @@ const SignUpPage = () => {
   };
 
   const handleSignUpWithGoogle = async () => {
-    // Google sign-up logic
+    await signIn.social({
+      provider: "google",
+    });
   };
 
   const handleSignUpWithGithub = async () => {
-    // GitHub sign-up logic
+    await signIn.social({
+      provider: "github",
+    });
   };
 
   return (
