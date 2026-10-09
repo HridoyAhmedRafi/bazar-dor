@@ -1,5 +1,6 @@
 import { IMarquee } from "@/types/marquee-links-type";
 import ProductSection from "@/components/shared/ProductSection";
+import { notFound } from "next/navigation";
 
 interface ParamsProps {
   params: Promise<{
@@ -23,6 +24,10 @@ const CategoryPage = async ({ params }: ParamsProps) => {
     (c: { icon: string; id: string; nameBn: string; slug: string }) =>
       c.id === categoryId,
   );
+
+  if (!currentCategory) {
+    notFound();
+  }
 
   return (
     <div className="bg-[#e1e8e163]">

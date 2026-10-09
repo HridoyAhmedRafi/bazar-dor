@@ -6,20 +6,17 @@ import { usePathname } from "next/navigation";
 const ActiveLink = ({ data }: { data: INavLinks[] }) => {
   const pathname = usePathname();
   return (
-    <div className="flex max-w-7xl mx-auto gap-4 px-4 py-4 md:gap-15">
+    <div className="mx-auto flex max-w-7xl flex-wrap items-center  sm:gap-2 md:gap-3 px-4 py-4 ">
       {data.map((link) => {
         const isActive = pathname === `/category/${link.id}`;
 
         return (
-          <div
-            key={link.id}
-            className="flex flex-wrap items-center gap-2 text-[13px] md:flex-nowrap md:text-[14px]"
-          >
+          <div key={link.id}>
             <Link
               href={`/category/${link.id}`}
-              className={`flex items-center gap-2 rounded-lg px-3 py-2 transition-colors ${
+              className={`flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-[13px] transition-colors md:text-[14px] ${
                 isActive
-                  ? "bg-[#05893e] text-white font-semibold"
+                  ? "bg-[#05893e] font-semibold text-white"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
               aria-current={isActive ? "page" : undefined}
