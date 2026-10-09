@@ -2,10 +2,12 @@
 
 import { signIn, signUp } from "@/lib/auth-client";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const SignUpPage = () => {
+  const router = useRouter();
+
   const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -26,7 +28,7 @@ const SignUpPage = () => {
 
     if (data) {
       toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে");
-      redirect("/");
+      router.push("/sign-in");
     }
     if (error) {
       toast.error(error.message as string);
