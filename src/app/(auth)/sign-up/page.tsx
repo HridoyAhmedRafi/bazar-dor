@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { signIn, signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
 import toast from "react-hot-toast";
 
 const SignUpPage = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,18 +22,21 @@ const SignUpPage = () => {
       password: string;
     };
 
+    setLoading(true);
+
     const { data, error } = await signUp.email({
       name: user.name,
       email: user.email,
-      password: user.password,  
+      password: user.password,
     });
 
     if (data) {
-      toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে");
+      toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে");
       router.push("/sign-in");
     }
     if (error) {
       toast.error(error.message as string);
+      setLoading(false);
     }
   };
 
@@ -84,9 +90,17 @@ const SignUpPage = () => {
 
             <button
               type="submit"
-              className="btn bg-[#05893e] text-white w-full mt-5"
+              disabled={loading}
+              className="btn bg-[#05893e] text-white w-full mt-5 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              অ্যাকাউন্ট তৈরি করুন
+              {loading ? (
+                <>
+                  <span className="loading loading-spinner loading-sm"></span>
+                  সাইন আপ হচ্ছে...
+                </>
+              ) : (
+                "অ্যাকাউন্ট তৈরি করুন"
+              )}
             </button>
 
             <div className="flex items-center gap-3 my-4">

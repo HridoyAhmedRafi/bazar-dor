@@ -16,7 +16,7 @@ const unitBn: Record<string, string> = {
 const DetailsPage = async ({ params }: ParamsProps) => {
   const { detailsId } = await params;
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/bazardor/products/${detailsId}`,
+    `https://api.api-store.workers.dev/api/bazardor/products/${detailsId}`,
   );
   const product = await res.json();
 

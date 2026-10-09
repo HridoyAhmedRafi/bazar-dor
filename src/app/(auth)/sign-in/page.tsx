@@ -1,11 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const SignInPage = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -17,17 +21,20 @@ const SignInPage = () => {
       password: string;
     };
 
+    setLoading(true);
+
     const { data, error } = await signIn.email({
       email: user.email,
       password: user.password,
     });
 
     if (data) {
-      toast.success("সফলভাবে সাইন ইন হয়েছে");
-      redirect("/");
+      toast.success("সফলভাবে সাইন ইন হয়েছে");
+      router.push("/");
     }
     if (error) {
       toast.error(error.message as string);
+      setLoading(false);
     }
   };
 
@@ -73,9 +80,17 @@ const SignInPage = () => {
 
             <button
               type="submit"
-              className="btn bg-[#05893e] text-white w-full mt-5"
+              disabled={loading}
+              className="btn bg-[#05893e] text-white w-full mt-5 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              সাইন ইন
+              {loading ? (
+                <>
+                  <span className="loading loading-spinner loading-sm"></span>
+                  সাইন ইন হচ্ছে...
+                </>
+              ) : (
+                "সাইন ইন"
+              )}
             </button>
 
             <div className="flex items-center gap-3 my-4">

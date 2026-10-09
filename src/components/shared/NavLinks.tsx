@@ -4,7 +4,7 @@ import ActiveLink from "./ActiveLink";
 
 const NavLinks = async () => {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories",
+    "https://api.api-store.workers.dev/api/bazardor/categories",
   );
   const data = await res.json();
   const links: INavLinks[] = data;
