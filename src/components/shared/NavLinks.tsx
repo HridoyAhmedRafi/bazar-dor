@@ -9,7 +9,7 @@ const NavLinks = async () => {
   const links: INavLinks[] = data;
 
   return (
-    <div className="py-4 flex max-w-7xl mx-auto px-4 gap-4 ">
+    <div className="py-4 flex max-w-7xl mx-auto px-4 gap-4 md:gap-15 ">
       {links.map((link) => (
         <div
           key={link.id}
