@@ -76,7 +76,6 @@ const ProfilePage = () => {
           <div className="rounded-2xl border border-gray-200 bg-white p-5  sm:p-8">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex min-w-0 items-center gap-4">
-                {/* User Avatar */}
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#05893e] text-2xl font-semibold text-white sm:h-16 sm:w-16">
                   {user?.name?.charAt(0).toUpperCase() || "U"}
                 </div>

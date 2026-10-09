@@ -18,12 +18,11 @@ const SignUpPage = () => {
       email: string;
       password: string;
     };
-    console.log("before submit data in sign up page", user);
 
     const { data, error } = await signUp.email({
       name: user.name,
       email: user.email,
-      password: user.password,
+      password: user.password,  
     });
 
     if (data) {
