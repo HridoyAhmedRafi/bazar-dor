@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Buttons from "./Buttons";
+import Buttons from "../user-session/Buttons";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
 

@@ -1,4 +1,4 @@
-import { IMarquee } from "@/app/types/marquee-links-type";
+import { IMarquee } from "@/types/marquee-links-type";
 import Link from "next/link";
 
 const ProductCard = ({ upProducts }: { upProducts: IMarquee }) => {
@@ -27,9 +27,7 @@ const ProductCard = ({ upProducts }: { upProducts: IMarquee }) => {
           </div>
         </div>
 
-
         <div className="mt-4 flex items-end justify-between">
-
           <div>
             <p className="text-sm text-gray-500">আজকের দাম</p>
 
@@ -38,7 +36,6 @@ const ProductCard = ({ upProducts }: { upProducts: IMarquee }) => {
             </p>
           </div>
 
-          
           <div
             className={`rounded-full px-3 py-1 text-sm font-semibold ${
               upProducts.today > upProducts.yesterday

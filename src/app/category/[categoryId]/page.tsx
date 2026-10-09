@@ -1,4 +1,4 @@
-import { IMarquee } from "@/app/types/marquee-links-type";
+import { IMarquee } from "@/types/marquee-links-type";
 import ProductSection from "@/components/shared/ProductSection";
 
 interface ParamsProps {

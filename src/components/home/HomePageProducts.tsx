@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { IMarquee } from "@/types/marquee-links-type";
-import ProductCard from "../home/ProductCard";
+import ProductCard from "./ProductCard";
 
 const sortOptions = [
   { value: "default", label: "ডিফল্ট" },
@@ -10,7 +10,7 @@ const sortOptions = [
   { value: "high-to-low", label: "দাম: বেশি থেকে কম" },
 ];
 
-const HomePageProducts = ({ data }: { data: IMarquee[] }) => {
+const HomePageSorting = ({ data }: { data: IMarquee[] }) => {
   const [sortOrder, setSortOrder] = useState("default");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -24,57 +24,49 @@ const HomePageProducts = ({ data }: { data: IMarquee[] }) => {
         setIsOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleOutside);
-    document.addEventListener("touchstart", handleOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleOutside);
-      document.removeEventListener("touchstart", handleOutside);
-    };
-  }, []);
-
-  useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
     };
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("touchstart", handleOutside);
     document.addEventListener("keydown", handleKey);
-    return () => document.removeEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
+      document.removeEventListener("keydown", handleKey);
+    };
   }, []);
 
   const currentLabel =
     sortOptions.find((o) => o.value === sortOrder)?.label ?? "ডিফল্ট";
 
   const sortedData = [...data].sort((a, b) => {
-    if (sortOrder === "low-to-high") {
-      return a.today - b.today;
-    }
+    if (sortOrder === "low-to-high") return a.today - b.today;
+    if (sortOrder === "high-to-low") return b.today - a.today;
 
-    if (sortOrder === "high-to-low") {
-      return b.today - a.today;
-    }
-
-    return 0;
+    return b.change.pct - a.change.pct;
   });
 
   return (
-    <>
-      <div className="flex items-center justify-between gap-3 bg-white border border-gray-200 rounded-[15px] px-3 py-3 mt-5 mb-4">
-        <div className="min-w-0">
-          <h1 className="font-bold text-[16px] md:text-[18px]">সব পণ্য</h1>
-          <p className="text-gray-600 text-xs sm:text-sm md:text-base">
-            {`মোট ${data.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে`}
+    <div className="mt-10 max-w-7xl mx-auto px-4 pb-10">
+      <div className="flex items-end justify-between gap-3">
+        <div>
+          <h1 className="font-bold text-[18px]">সব পণ্য</h1>
+          <p className="text-gray-600">
+            মোট {data.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে
           </p>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0">
-          <span className="text-gray-600 shrink-0 hidden sm:inline">সাজান</span>
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-gray-600 hidden sm:inline">সাজান</span>
 
-          <div ref={dropdownRef} className="relative w-full max-w-50">
+          <div ref={dropdownRef} className="relative">
             <button
               type="button"
               aria-haspopup="listbox"
               aria-expanded={isOpen}
               onClick={() => setIsOpen((prev) => !prev)}
-              className="flex w-full items-center justify-between gap-2 border border-gray-300 rounded-lg px-3 py-2 bg-white text-left"
+              className="flex items-center justify-between gap-2 border border-gray-300 rounded-lg px-3 py-2 bg-white text-left"
             >
               <span className="truncate">{currentLabel}</span>
               <svg
@@ -96,7 +88,7 @@ const HomePageProducts = ({ data }: { data: IMarquee[] }) => {
             {isOpen && (
               <ul
                 role="listbox"
-                className="absolute right-0 top-full z-50 mt-1 w-full min-w-max max-w-[calc(100vw-2rem)] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg"
+                className="absolute right-0 top-full z-30 mt-1 min-w-max max-w-[calc(100vw-2rem)] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg"
               >
                 {sortOptions.map((option) => (
                   <li
@@ -126,13 +118,13 @@ const HomePageProducts = ({ data }: { data: IMarquee[] }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-5">
-        {sortedData.map((product) => (
-          <ProductCard key={product.id} upProducts={product} />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+        {sortedData.map((upProducts) => (
+          <ProductCard key={upProducts.id} upProducts={upProducts} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
-export default HomePageProducts;
+export default HomePageSorting;

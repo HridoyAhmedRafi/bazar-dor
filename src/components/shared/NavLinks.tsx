@@ -1,4 +1,4 @@
-import { INavLinks } from "@/app/types/nav-links-type";
+import { INavLinks } from "@/types/nav-links-type";
 import Link from "next/link";
 
 const NavLinks = async () => {

@@ -1,4 +1,4 @@
-import { IMarquee } from "@/app/types/marquee-links-type";
+import { IMarquee } from "@/types/marquee-links-type";
 import ProductCard from "@/components/home/ProductCard";
 
 const Products = async () => {

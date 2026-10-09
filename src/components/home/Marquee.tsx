@@ -1,4 +1,4 @@
-import { IMarquee } from "@/app/types/marquee-links-type";
+import { IMarquee } from "@/types/marquee-links-type";
 import Link from "next/link";
 import MarqueeText from "react-marquee-text";
 
