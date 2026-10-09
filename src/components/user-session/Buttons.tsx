@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const Buttons = () => {
   const router = useRouter();
@@ -37,6 +38,7 @@ const Buttons = () => {
     await signOut({
       fetchOptions: {
         onSuccess: () => {
+          toast.success("সাইন আউট সফল হয়েছে");
           router.push("/sign-in");
         },
       },

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface ParamsProps {
   params: Promise<{
@@ -18,6 +19,11 @@ const DetailsPage = async ({ params }: ParamsProps) => {
   const res = await fetch(
     `https://api.api-store.workers.dev/api/bazardor/products/${detailsId}`,
   );
+
+  if (!res.ok) {
+    notFound();
+  }
+
   const product = await res.json();
 
   const prices = product.markets.flatMap(

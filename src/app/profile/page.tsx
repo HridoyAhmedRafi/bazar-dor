@@ -3,6 +3,7 @@
 import { signOut, updateUser, useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -54,6 +55,7 @@ const ProfilePage = () => {
     await signOut({
       fetchOptions: {
         onSuccess: () => {
+          toast.success("সাইন আউট সফল হয়েছে");
           router.push("/sign-in");
         },
       },
