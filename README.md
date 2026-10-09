@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# বাজার দর (BazarDor)
 
-## Getting Started
+BazarDor is a responsive web application for exploring essential product prices across different markets in Bangladesh and comparing price differences between markets.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**BazarDor (বাজার দর)** helps users view the prices of everyday products and compare prices across multiple markets. It provides product price information, price change indicators, and market-level comparisons in one place.
+
+The application is designed to work on mobile, tablet, and desktop devices. It also includes authentication and profile management.
+
+## Key Features
+
+- **Product Price Information:** View the prices of essential products.
+- **Market Price Comparison:** Compare the prices of products across multiple markets.
+- **Price Change Indicators:** See whether product prices have increased or decreased.
+- **Product Sorting:** Organize products using the available sorting options.
+- **Authentication and Profile Management:** Sign in and sign up using email/password or Google/GitHub OAuth, with profile management support.
+- **Responsive Design:** Use the application on mobile, tablet, and desktop screens.
+
+## Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- MongoDB
+- External API
+- Email/Password Authentication
+- Google OAuth
+- GitHub OAuth
+
+## User Interface
+
+- Responsive layout for different screen sizes
+- Bengali-language product information and dates
+- Price increase and decrease indicators
+- Toast notifications for relevant actions
+- Loading feedback during supported actions
+
+## Project Structure
+
+The project uses the Next.js App Router. The following is a simplified example of the project structure; update it to match the actual folders in your project.
+
+```text
+BazarDor/
+├── public/             # Static assets
+├── src/
+│   └── app/            # Application pages and layouts
+├── .env.local          # Local environment variables
+├── package.json        # Dependencies and scripts
+└── README.md           # Project documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Data and Authentication
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Product and market information is retrieved from an external API.
+- Authentication supports email/password sign-in and sign-up.
+- Google and GitHub OAuth authentication are supported.
+- MongoDB is used as the database.
