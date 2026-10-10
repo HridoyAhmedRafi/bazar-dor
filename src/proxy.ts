@@ -7,6 +7,7 @@ export async function proxy(request: NextRequest) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+  
 
   const user = session?.user;
 
