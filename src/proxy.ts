@@ -7,14 +7,11 @@ export async function proxy(request: NextRequest) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  
 
   const user = session?.user;
 
   if (!user) {
-    return NextResponse.redirect(
-      new URL("/sign-in?message=login-required", request.url),
-    );
+    return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 }
 
