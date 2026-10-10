@@ -16,8 +16,6 @@ const CategoryPage = async ({ params }: ParamsProps) => {
   );
   const data: IMarquee[] = await res.json();
 
-  console.log(data);
-
   const signleCategory = await fetch(
     `https://openapi.programming-hero.com/api/bazardor/categories`,
   );
