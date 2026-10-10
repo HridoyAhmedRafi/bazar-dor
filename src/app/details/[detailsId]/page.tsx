@@ -44,15 +44,12 @@ const DetailsPage = async ({ params }: ParamsProps) => {
           <Link href={"/"}>
             <button className="cursor-pointer">হোম</button>
           </Link>
-
           <span>›</span>
-
           <Link href={`/category/${product.category}`}>
             {product.categoryNameBn}
           </Link>
-npm run build
+          npm run build
           <span>›</span>
-
           <span>{product.nameBn}</span>
         </div>
 
