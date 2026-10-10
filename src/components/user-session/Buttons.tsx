@@ -55,15 +55,21 @@ const Buttons = () => {
         {user ? (
           <div ref={menuRef} className="relative">
             <button
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded={isOpen}
-              aria-label="Profile menu"
-              onClick={() => setIsOpen((prev) => !prev)}
-              className="flex h-9 w-9 md:h-10 md:w-10 cursor-pointer items-center justify-center rounded-full bg-[#05893e] text-white font-bold text-[15px] md:text-[17px]"
-            >
-              {initial}
-            </button>
+  type="button"
+  aria-haspopup="menu"
+  aria-expanded={isOpen}
+  aria-label="Profile menu"
+  onClick={() => setIsOpen((prev) => !prev)}
+  className="flex cursor-pointer items-center gap-2"
+>
+  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#05893e] text-[15px] font-bold text-white md:h-10 md:w-10 md:text-[17px]">
+    {initial}
+  </span>
+
+  <span className="hidden text-sm font-medium text-[#1d271f] md:inline">
+    {user.name}
+  </span>
+</button>
 
             {isOpen && (
               <div

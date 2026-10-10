@@ -10,7 +10,7 @@ const sortOptions = [
   { value: "high-to-low", label: "দাম: বেশি থেকে কম" },
 ];
 
-const HomePageProducts = ({ data }: { data: IMarquee[] }) => {
+const ProductSection = ({ data }: { data: IMarquee[] }) => {
   const [sortOrder, setSortOrder] = useState("default");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -126,10 +126,7 @@ const HomePageProducts = ({ data }: { data: IMarquee[] }) => {
         </div>
       </div>
 
-      <div
-        id="allProducts"  
-        className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-5"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-5">
         {sortedData.map((product) => (
           <ProductCard key={product.id} upProducts={product} />
         ))}
@@ -138,4 +135,4 @@ const HomePageProducts = ({ data }: { data: IMarquee[] }) => {
   );
 };
 
-export default HomePageProducts;
+export default ProductSection;

@@ -1,14 +1,14 @@
 import { IMarquee } from "@/types/marquee-links-type";
-import HomePageProducts from "../shared/ProductSection";
+import HomePageProducts from "./HomePageProducts";
 
 const AllProducts = async () => {
   const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    "https://openapi.programming-hero.com/api/bazardor/products",
   );
   const data: IMarquee[] = await res.json();
 
   return (
-    <div className="mt-10 max-w-7xl mx-auto px-4 pb-10">
+    <div>
       <HomePageProducts data={data}></HomePageProducts>
     </div>
   );

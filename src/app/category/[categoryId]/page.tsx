@@ -1,5 +1,5 @@
-import { IMarquee } from "@/types/marquee-links-type";
 import ProductSection from "@/components/shared/ProductSection";
+import { IMarquee } from "@/types/marquee-links-type";
 import { notFound } from "next/navigation";
 
 interface ParamsProps {
@@ -10,20 +10,26 @@ interface ParamsProps {
 
 const CategoryPage = async ({ params }: ParamsProps) => {
   const { categoryId } = await params;
+  console.log(categoryId);
 
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
   );
   const data: IMarquee[] = await res.json();
 
+  console.log(data);
+
   const signleCategory = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/categories`,
+    `https://openapi.programming-hero.com/api/bazardor/categories`,
   );
   const getSignleCategory = await signleCategory.json();
+  console.log(getSignleCategory);
+
   const currentCategory = getSignleCategory.find(
     (c: { icon: string; id: string; nameBn: string; slug: string }) =>
       c.id === categoryId,
   );
+  // console.log(currentCategory);
 
   if (!currentCategory) {
     notFound();

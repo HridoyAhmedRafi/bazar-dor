@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 
 const TodayIncreasedPrice = async () => {
   const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    "https://openapi.programming-hero.com/api/bazardor/products",
   );
   const data: IMarquee[] = await res.json();
 

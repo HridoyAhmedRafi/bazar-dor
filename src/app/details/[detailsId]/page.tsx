@@ -17,7 +17,7 @@ const unitBn: Record<string, string> = {
 const DetailsPage = async ({ params }: ParamsProps) => {
   const { detailsId } = await params;
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${detailsId}`,
+    `https://openapi.programming-hero.com/api/bazardor/products/${detailsId}`,
   );
 
   if (!res.ok) {
