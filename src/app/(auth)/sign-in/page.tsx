@@ -7,20 +7,6 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const SignInPage = () => {
-  // const searchParams = useSearchParams();
-  // const toastShown = useRef(false);
-
-  // useEffect(() => {
-  //   if (
-  //     searchParams.get("message") === "login-required" &&
-  //     !toastShown.current
-  //   ) {
-  //     toastShown.current = true;
-
-  //     toast.error("এই পৃষ্ঠাটি অ্যাক্সেস করতে অনুগ্রহ করে লগ ইন করুন।");
-  //   }
-  // }, [searchParams]);
-
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
