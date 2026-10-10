@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const SignInPage = () => {
+  
   const searchParams = useSearchParams();
   const toastShown = useRef(false);
 
