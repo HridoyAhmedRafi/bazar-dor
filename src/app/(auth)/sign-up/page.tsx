@@ -33,7 +33,6 @@ const SignUpPage = () => {
     if (data) {
       toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে");
       router.push("/sign-in");
-      router.refresh();
     }
     if (error) {
       toast.error(error.message as string);
