@@ -44,7 +44,7 @@ const HomePageProducts = ({ data }: { data: IMarquee[] }) => {
     if (sortOrder === "low-to-high") return a.today - b.today;
     if (sortOrder === "high-to-low") return b.today - a.today;
 
-    return b.change.pct - a.change.pct;
+    return 0;
   });
 
   return (
