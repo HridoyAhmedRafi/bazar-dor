@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const SignInPage = () => {
-  
   const searchParams = useSearchParams();
   const toastShown = useRef(false);
 
@@ -46,6 +45,7 @@ const SignInPage = () => {
     if (data) {
       toast.success("সফলভাবে সাইন ইন হয়েছে");
       router.push("/");
+      router.refresh();
     }
     if (error) {
       toast.error(error.message as string);
