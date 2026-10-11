@@ -6,6 +6,7 @@ import Link from "next/link";
 const Navbar = ({ marquee }: { marquee?: React.ReactNode }) => {
   const date = new Date().toLocaleDateString("bn-BD", {
     dateStyle: "full",
+    timeZone: "Asia/Dhaka",
   });
 
   return (
