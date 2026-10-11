@@ -70,6 +70,7 @@ const SignUpPage = () => {
               name="name"
               className="input input-bordered w-full focus:input-primary"
               placeholder="আপনার নাম লিখুন"
+              required
             />
 
             <label className="label font-medium mt-2">ইমেইল</label>
