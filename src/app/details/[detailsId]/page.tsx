@@ -48,7 +48,7 @@ const DetailsPage = async ({ params }: ParamsProps) => {
           <Link href={`/category/${product.category}`}>
             {product.categoryNameBn}
           </Link>
-          npm run build
+
           <span>›</span>
           <span>{product.nameBn}</span>
         </div>
