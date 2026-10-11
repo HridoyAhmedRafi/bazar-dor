@@ -123,7 +123,7 @@ const SignInPage = () => {
                 href="/sign-up"
                 className="text-[#05893e] font-medium hover:underline"
               >
-                সাইন আপ করুন
+                অ্যাকাউন্ট তৈরি করুন
               </Link>
             </p>
           </fieldset>
